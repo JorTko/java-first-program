@@ -1,4 +1,3 @@
-package com.h2;
 import com.h2.BestLoanRates;
 import com.h2.MortgageCalculator;
 import com.h2.SavingsCalculator;
