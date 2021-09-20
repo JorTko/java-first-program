@@ -417,8 +417,6 @@ public class Module4_Test {
         method.invoke(null, (Object) new String[]{loanAmount, termInYears, annualRate});
         DecimalFormat df = new DecimalFormat("####0.00");
         String rightAnswer = "monthlyPayment: " + df.format(1221.14) + "\r\n";
-        rightAnswer.replace(",",".");
-       // System.out.println("rightAnswer----" + rightAnswer);
 
         assertEquals(rightAnswer , testOut.toString());
     }
