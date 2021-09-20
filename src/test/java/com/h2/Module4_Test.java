@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.*;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -362,7 +363,12 @@ public class Module4_Test {
             assertEquals(1, filteredMethod.size(), classToFind + " should contain a method called '" + methodName + "'");
             Method method = filteredMethod.get(0);
             final String result = (String) invokeMethod(method, instance);
-            final String expected = "monthlyPayment: 1221.14";
+
+            DecimalFormat df = new DecimalFormat("####0.00");
+
+            // final String expected =  "monthlyPayment: 1221.14";
+            final String expected =  "monthlyPayment: " + df.format(1221.14); // + "\r\n";
+
             assertEquals(expected, result, methodName + " should return " + expected);
         }
     }
@@ -409,7 +415,11 @@ public class Module4_Test {
 
         Method method = mortgageCalculator.getMethod("main", String[].class);
         method.invoke(null, (Object) new String[]{loanAmount, termInYears, annualRate});
+        DecimalFormat df = new DecimalFormat("####0.00");
+        String rightAnswer = "monthlyPayment: " + df.format(1221.14) + "\r\n";
+        rightAnswer.replace(",",".");
+       // System.out.println("rightAnswer----" + rightAnswer);
 
-        assertEquals("monthlyPayment: 1221.14" + "\n", testOut.toString());
+        assertEquals(rightAnswer , testOut.toString());
     }
 }
